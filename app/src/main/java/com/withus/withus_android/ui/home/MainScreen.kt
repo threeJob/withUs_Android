@@ -1,5 +1,6 @@
 package com.withus.withus_android.ui.home
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -24,7 +25,8 @@ fun MainScreen() {
         Column(
             Modifier
                 .fillMaxSize()
-                .padding(start = 10.dp, end = 10.dp, bottom = 10.dp)
+                .padding(start = 20.dp, top = 10.dp, end = 20.dp, bottom = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             TopBar(
                 content = {

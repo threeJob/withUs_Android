@@ -57,8 +57,8 @@ fun ToolbarWithMenu(name: String) {
 fun TopBar(modifier: Modifier = Modifier, content: @Composable () -> Unit = {}) {
     Row(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(start = 10.dp, end = 10.dp, top = 10.dp, bottom = 10.dp),
+            .fillMaxWidth(),
+//            .padding(start = 10.dp, end = 0.dp, top = 10.dp, bottom = 10.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -73,7 +73,7 @@ fun TopBar(modifier: Modifier = Modifier, content: @Composable () -> Unit = {}) 
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
                     imageVector = Icons.Filled.Menu,
-                    contentDescription = "Menu"
+                    contentDescription = "Menu",
                 )
             }
         }

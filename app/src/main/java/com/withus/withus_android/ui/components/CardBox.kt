@@ -16,8 +16,8 @@ import androidx.compose.ui.unit.dp
 fun CardBox(modifier: Modifier = Modifier, onClick: () -> Unit = {}, content: @Composable () -> Unit) {
     Card(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(10.dp),
+            .fillMaxWidth(),
+//            .padding(10.dp),
         backgroundColor = Color.White,
         shape = RoundedCornerShape(20.dp),
         onClick = onClick
