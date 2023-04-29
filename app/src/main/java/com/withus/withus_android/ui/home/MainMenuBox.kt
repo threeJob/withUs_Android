@@ -1,8 +1,6 @@
 package com.withus.withus_android.ui.home
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Text
@@ -18,10 +16,17 @@ import com.withus.withus_android.ui.components.MenuCardBox
 @Composable
 fun MainMenuBox() {
     Column(modifier = Modifier.fillMaxWidth()) {
-        Text(text = "스터디 공간", fontSize = 20.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(10.dp))
+        Text(
+            text = "스터디 공간",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(bottom = 10.dp)
+        )
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             userScrollEnabled = false,
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             item {
                 MenuCardBox(title = "공식방 선택하기", content = "공식방 랜덤 입장하기")
