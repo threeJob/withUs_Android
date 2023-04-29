@@ -1,11 +1,17 @@
 package com.withus.withus_android.ui
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -28,16 +34,20 @@ fun NavigationMain() {
     )
     Scaffold(
         bottomBar = {
-            BottomNavigation(backgroundColor = Color.Transparent, elevation = 0.dp) {
+            BottomNavigation(
+                backgroundColor = MaterialTheme.colorScheme.surface,
+                elevation = 0.dp,
+                contentColor = MaterialTheme.colorScheme.onSurface,
+            ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
                 items.forEach { screen ->
                     BottomNavigationItem(
                         icon = {
                             if (currentDestination?.hierarchy?.any { it.route == screen.route } == false) {
-                                Icon(screen.iconImageVector, contentDescription = null)
+                                Icon(screen.iconImageVector, contentDescription = null, tint = MaterialTheme.colorScheme.onBackground)
                             } else {
-                                Icon(screen.iconSelectedImageVector, contentDescription = null)
+                                Icon(screen.iconSelectedImageVector, contentDescription = null, tint = MaterialTheme.colorScheme.onBackground)
                             }
                         },
                         label = { Text(stringResource(screen.resourceId)) },
@@ -56,16 +66,22 @@ fun NavigationMain() {
                                 // Restore state when reselecting a previously selected item
                                 restoreState = true
                             }
-                        }
+                        },
                     )
                 }
             }
         }
     ) { innerPadding ->
-        NavHost(navController = navController, startDestination = Screen.Home.route, modifier = Modifier.padding(innerPadding)) {
-            composable(Screen.Home.route) { MainScreen() }
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background,
+            contentColor = MaterialTheme.colorScheme.onBackground,
+        ) {
+            NavHost(navController = navController, startDestination = Screen.Home.route, modifier = Modifier.padding(innerPadding)) {
+                composable(Screen.Home.route) { MainScreen() }
 //        composable("friendslist") { FriendsList(/*...*/) }
-            /*...*/
+                /*...*/
+            }
         }
     }
 

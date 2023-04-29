@@ -1,5 +1,6 @@
 package com.withus.withus_android
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,7 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.withus.withus_android.ui.NavigationMain
 import com.withus.withus_android.ui.theme.WithUs_AndroidTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +37,12 @@ fun Greeting(name: String) {
 }
 
 @Preview(showBackground = true)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun DefaultPreview() {
     WithUs_AndroidTheme {
-        Greeting("Test Test")
+        Surface(color = MaterialTheme.colorScheme.primary, contentColor = MaterialTheme.colorScheme.onBackground) {
+            Greeting("Test Test")
+        }
     }
 }

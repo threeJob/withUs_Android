@@ -1,15 +1,20 @@
-package com.withus.withus_android.ui.home
+package com.withus.withus_android.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,7 +26,8 @@ import androidx.compose.ui.unit.dp
 fun ToolbarWithMenu(name: String) {
     Scaffold(topBar = {
         TopAppBar(
-            title = { Text(text = name) },
+            contentColor = MaterialTheme.colorScheme.onSurface,
+            title = { Text(text = name, color = MaterialTheme.colorScheme.onSurface) },
             navigationIcon = {
                 IconButton(onClick = { /*TODO*/ }) {
                     Icon(
