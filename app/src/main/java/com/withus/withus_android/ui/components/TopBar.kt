@@ -1,4 +1,4 @@
-package com.withus.withus_android.ui.home
+package com.withus.withus_android.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -26,7 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 fun ToolbarWithMenu(name: String) {
     Scaffold(topBar = {
         TopAppBar(
-            title = { Text(text = name) },
+            contentColor = MaterialTheme.colorScheme.onSurface,
+            title = { Text(text = name, color = MaterialTheme.colorScheme.onSurface) },
             navigationIcon = {
                 IconButton(onClick = { /*TODO*/ }) {
                     Icon(

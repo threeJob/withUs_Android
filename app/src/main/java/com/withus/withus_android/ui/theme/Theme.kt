@@ -1,7 +1,6 @@
 package com.withus.withus_android.ui.theme
 
 import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -12,40 +11,38 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
+    primary = SeaGreen,
+    secondary = DarkSlateGray,
     tertiary = Pink80,
-
-    // Other default colors to override
     background = Color.Black,
-    surface = Color(0xFF272727),
-    onPrimary = Color.Black,
-    onSecondary = Color.Black,
-    onTertiary = Color.Black,
     onBackground = Color.White,
-    onSurface = Color.White,
+    surface = LightBlack,
+    onSurface = WhiteSmoke,
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
+    primary = SeaGreenDark,
+    secondary = DarkSlateGray,
     tertiary = Pink40,
+    background = WhiteSmoke,
+    onBackground = LightBlack,
+    surface = Color.White,
+    onSurface = LightBlack,
 
-    // Other default colors to override
+    /* Other default colors to override
     background = Color(0xFFFFFBFE),
-    surface = Color.LightGray.copy(alpha = 0.5f),
+    surface = Color(0xFFFFFBFE),
     onPrimary = Color.White,
     onSecondary = Color.White,
     onTertiary = Color.White,
     onBackground = Color(0xFF1C1B1F),
     onSurface = Color(0xFF1C1B1F),
-
-    )
+    */
+)
 
 @Composable
 fun WithUs_AndroidTheme(
@@ -73,6 +70,6 @@ fun WithUs_AndroidTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
-        content = content
+        content = content,
     )
 }

@@ -1,7 +1,13 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.0'
+    id 'com.google.dagger.hilt.android'
+    id 'kotlin-kapt'
 }
+// 프로퍼티를 선언하고, 저장한 키값을 불러온다.
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
     namespace 'com.withus.withus_android'
@@ -18,20 +24,26 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        manifestPlaceholders = [
+                kakao_sdk_key: properties['kakao_sdk_key']
+        ]
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "KAKAO_SDK_KEY", "\"${properties['kakao_sdk_key']}\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     buildFeatures {
         compose true
@@ -65,4 +77,25 @@ dependencies {
 
     def nav_version = "2.7.3"
     implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:2.45"
+    kapt "com.google.dagger:hilt-compiler:2.45"
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.44'
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.45'
+    androidTestImplementation 'org.robolectric:robolectric:4.9.2'
+    implementation "androidx.hilt:hilt-navigation-compose:1.1.0-alpha01"
+
+    // retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    // serialization
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
+    // retrofit serialize
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0'
+
+    // kakao sdk
+    implementation "com.kakao.sdk:v2-user:2.13.0"
+
+    // Coil
+    implementation "io.coil-kt:coil-compose:2.3.0"
 }
