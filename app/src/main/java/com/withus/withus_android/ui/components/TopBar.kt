@@ -26,7 +26,6 @@ import androidx.compose.ui.tooling.preview.Preview
 fun ToolbarWithMenu(name: String) {
     Scaffold(topBar = {
         TopAppBar(
-            contentColor = MaterialTheme.colorScheme.onSurface,
             title = { Text(text = name, color = MaterialTheme.colorScheme.onSurface) },
             navigationIcon = {
                 IconButton(onClick = { /*TODO*/ }) {
