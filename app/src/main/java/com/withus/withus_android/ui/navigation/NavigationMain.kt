@@ -1,11 +1,15 @@
-package com.withus.withus_android.ui
+package com.withus.withus_android.ui.navigation
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -15,7 +19,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.withus.withus_android.ui.home.MainScreen
-import com.withus.withus_android.ui.navigation.Screen
 
 @Composable
 fun NavigationMain() {
@@ -28,19 +31,15 @@ fun NavigationMain() {
     )
     Scaffold(
         bottomBar = {
-            BottomNavigation(backgroundColor = Color.Transparent, elevation = 0.dp) {
+            NavigationBar(
+                containerColor = MaterialTheme.colorScheme.surface,
+                contentColor = MaterialTheme.colorScheme.onSurface,
+                tonalElevation = 0.dp,
+            ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
                 items.forEach { screen ->
-                    BottomNavigationItem(
-                        icon = {
-                            if (currentDestination?.hierarchy?.any { it.route == screen.route } == false) {
-                                Icon(screen.iconImageVector, contentDescription = null)
-                            } else {
-                                Icon(screen.iconSelectedImageVector, contentDescription = null)
-                            }
-                        },
-                        label = { Text(stringResource(screen.resourceId)) },
+                    NavigationBarItem(
                         selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                         onClick = {
                             navController.navigate(screen.route) {
@@ -56,7 +55,28 @@ fun NavigationMain() {
                                 // Restore state when reselecting a previously selected item
                                 restoreState = true
                             }
-                        }
+                        },
+                        icon = {
+                            if (currentDestination?.hierarchy?.any { it.route == screen.route } == false) {
+                                Icon(
+                                    imageVector = screen.iconImageVector,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.onSurface,
+                                )
+                            } else {
+                                Icon(
+                                    imageVector = screen.iconSelectedImageVector,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.onSurface,
+                                )
+                            }
+                        },
+                        label = {
+                            Text(
+                                text = stringResource(screen.resourceId),
+                                color = MaterialTheme.colorScheme.onSurface,
+                            )
+                        },
                     )
                 }
             }

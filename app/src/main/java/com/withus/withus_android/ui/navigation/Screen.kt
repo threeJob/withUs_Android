@@ -15,8 +15,12 @@ sealed class Screen(
     val iconImageVector: ImageVector,
     val iconSelectedImageVector: ImageVector
 ) {
-    object Home : Screen("home", R.string.main_screen, Icons.Outlined.Home, Icons.Filled.Home)
-    object Search : Screen("search", R.string.search_screen, Icons.Outlined.Search, Icons.Outlined.Search)
-    object Calendar : Screen("calendar", R.string.calendar_screen, Icons.Filled.DateRange, Icons.Filled.DateRange)
+
+    data object Home : Screen("home", R.string.main_screen, Icons.Outlined.Home, Icons.Filled.Home)
+    data object Search :
+        Screen("search", R.string.search_screen, Icons.Outlined.Search, Icons.Outlined.Search)
+
+    data object Calendar :
+        Screen("calendar", R.string.calendar_screen, Icons.Filled.DateRange, Icons.Filled.DateRange)
 //    object FriendsList : Screen("friendslist", R.string.friends_list)
 }

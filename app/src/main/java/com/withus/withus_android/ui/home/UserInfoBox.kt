@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.LinearProgressIndicator
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -48,10 +48,10 @@ fun UserInfoBox() {
                     Text(text = "${studyGoalTime}분", fontSize = 15.sp)
                 }
                 LinearProgressIndicator(
+                    progress = { studiedTime / studyGoalTime.toFloat() },
                     modifier = Modifier.fillMaxWidth(),
+                    trackColor = Color.LightGray,
                     color = Color.Gray,
-                    backgroundColor = Color.LightGray,
-                    progress = studiedTime / studyGoalTime.toFloat(),
                     strokeCap = StrokeCap.Round,
                 )
                 Text(text = "이번주 최고기록 : ${weekLargestStudiedTime}", fontSize = 11.sp, fontWeight = FontWeight.Bold)
